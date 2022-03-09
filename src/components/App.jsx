@@ -1,9 +1,9 @@
-import exampleVideoData from "../data/exampleVideoData.js";
-import VideoList from "./VideoList.js";
-import VideoListEntry from "./VideoListEntry.js";
-import VideoPlayer from "./VideoPlayer.js";
-import Search from "./Search.js";
-import searchYoutube from "../lib/searchYoutube.js";
+import exampleVideoData from '../data/exampleVideoData.js';
+import VideoList from './VideoList.js';
+import VideoListEntry from './VideoListEntry.js';
+import VideoPlayer from './VideoPlayer.js';
+import Search from './Search.js';
+import searchYoutube from '../lib/searchYoutube.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,9 +11,9 @@ class App extends React.Component {
     this.state = {
       currentVideo: exampleVideoData[0],
       videos: exampleVideoData,
-      search: "dogs",
+      search: '',
     };
-    searchYoutube(this.state.search, this.receiveData.bind(this));
+    searchYoutube(this.state.search, this.receiveData.bind(this))
   }
 
   receiveData(data) {
@@ -27,6 +27,8 @@ class App extends React.Component {
     this.setState({
       search: searchQuery,
     });
+    searchYoutube(this.state.search, this.receiveData.bind(this));
+    console.log('changeSearchState was called');
   }
 
   onVideoListEntryTitleClick(video) {
@@ -57,7 +59,7 @@ class App extends React.Component {
               <h5>
                 <em>
                   <VideoPlayer video={this.state.currentVideo} />
-                </em>{" "}
+                </em>{''}
               </h5>
             </div>
           </div>
